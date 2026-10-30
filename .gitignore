@@ -1,0 +1,16 @@
+# Separate repositories / storage, never part of this repository
+manuscript/
+data/
+
+# Generated output (folders kept with .gitkeep)
+simulations/out/*
+!simulations/out/.gitkeep
+analysis/output/*
+!analysis/output/.gitkeep
+
+# Personal, never shared
+syncdata.local.conf
+CLAUDE.local.md
+.claude/CLAUDE.local.md
+.claude/settings.local.json
+.DS_Store

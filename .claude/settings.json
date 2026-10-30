@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git -C manuscript push --force:*)",
+      "Bash(git -C manuscript push -f:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(git commit --amend:*)",
+      "Bash(git config credential:*)",
+      "Bash(git config --global credential:*)",
+      "Bash(./syncdata.sh --push:*)",
+      "Bash(rm -rf data:*)",
+      "Edit(./data/**)",
+      "Read(./manuscript/.git/overleaf-credentials)",
+      "Edit(./manuscript/.git/overleaf-credentials)",
+      "Edit(./manuscript/tools/**)",
+      "Edit(./manuscript/.claude/**)"
+    ]
+  }
+}

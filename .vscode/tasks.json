@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Research: one-time manuscript setup (Git safety, token storage on Linux)",
+      "type": "shell",
+      "command": "if [ -d manuscript/.git ]; then cd manuscript && git config core.hooksPath tools/githooks && git config core.fileMode false && git config pull.rebase false && chmod +x tools/githooks/pre-commit; else echo No manuscript clone in manuscript/ yet: nothing to set up.; fi",
+      "linux": {
+        "command": "if [ -d manuscript/.git ]; then cd manuscript && git config core.hooksPath tools/githooks && git config core.fileMode false && git config pull.rebase false && chmod +x tools/githooks/pre-commit && ( { git config --global --get credential.helper || git config --system --get credential.helper; } >/dev/null || git config credential.helper \"store --file='$(git rev-parse --absolute-git-dir)/overleaf-credentials'\"); else echo No manuscript clone in manuscript/ yet: nothing to set up.; fi"
+      },
+      "windows": {
+        "command": "if (Test-Path manuscript/.git) { Set-Location manuscript; git config core.hooksPath tools/githooks; git config core.fileMode false; git config pull.rebase false } else { echo No manuscript clone in manuscript/ yet: nothing to set up. }"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "echo": false
+      }
+    }
+  ]
+}

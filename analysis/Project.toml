@@ -1,0 +1,12 @@
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
+MyPaperPackage = "37c8eba6-234e-488c-98bb-e89ef5533ccc"
+
+[sources]
+MyPaperPackage = {path = "../simulations"}
+
+[compat]
+CairoMakie = "0.15"
+JLD2 = "0.6"
+julia = "1.10"
