@@ -106,7 +106,7 @@ The PDF shows it inline in your colour as **ALICE#1: Shorten this paragraph…**
 | --- | --- |
 | New text in colour, old text struck out next to it | A short edit, waiting to be accepted |
 | `[deleted: …]` in pale colour, then `[…]` in full colour | A longer edit spanning paragraphs, equations or headings |
-| A box starting with **CLAUDE#1:** | A note or question by Claude |
+| A box starting with **CLAUDE#1:** | A note or question by Claude: usually short and in the margin, inline when it is long or needs equations |
 
 The colour tells you who made the change: Claude is dark red. You can mark your own edits the same way, with `\editAlice[old]{new}`.
 
@@ -128,7 +128,7 @@ The colour tells you who made the change: Claude is dark red. You can mark your 
 | GitDoc | VS Code extension “GitDoc” (skip it if you use Git yourself) | same | same |
 | TeX (optional) | MacTeX | MiKTeX or TeX Live | TeX Live from your package manager |
 
-TeX and the LaTeX Workshop extension give you a local PDF that recompiles on every save. Without TeX, don't install LaTeX Workshop (or disable it for the paper folder), and read the PDF on Overleaf.
+TeX and the LaTeX Workshop extension give you a local PDF that recompiles whenever the paper changes: your saves, Claude's edits, and co-authors' changes arriving from Overleaf. Without TeX, don't install LaTeX Workshop (or disable it for the paper folder), and read the PDF on Overleaf.
 
 **Join a paper (once per paper).**
 
@@ -150,12 +150,12 @@ Open the paper folder in VS Code, open the Claude Code panel, and ask in plain w
 | “Address all of Alice's notes in the introduction” | Proposes a plan first, then the same for each note |
 | “Tighten the abstract” | Small marked edits in the abstract |
 | “Read the methods and leave notes, don't edit” | Claude notes, no text changes |
-| “Accept Claude's edits in section 2” | Keeps the new text there and removes the markup |
+| “Accept changes from Bob in section 2” | Keeps Bob's new text there, without colour or crossouts. “Clean up section 2” instead removes only the crossed-out old text, leaving the new text coloured; without a name or a section, both cover everyone's edits in the whole paper |
 | “Resolve the Git conflict” | Merges both versions sensibly and explains what it chose |
 
 Without being asked, Claude also fixes clear spelling mistakes it notices (as marked edits), and fixes errors in cited bibliography entries directly in `biblio.bib`, leaving a short margin note at the first citation. Claude Code shows each change and asks before applying it, unless you allow edits for the session.
 
-**Syncing happens on every save.** Press Ctrl/Cmd+S, or switch to another window (that saves too). A few seconds later GitDoc commits, pulls Overleaf's latest text, merges it, and pushes; browser writers see your change within seconds. With TeX installed, the same save also recompiles your local PDF. Save before asking Claude to edit, so your unsaved typing and Claude's changes don't collide.
+**Syncing happens on every save.** Press Ctrl/Cmd+S, or switch to another window (that saves too). A few seconds later GitDoc commits, pulls Overleaf's latest text, merges it, and pushes; browser writers see your change within seconds. With TeX installed, your local PDF recompiles a few seconds after any change, including Claude's edits. Save before asking Claude to edit, so your unsaved typing and Claude's changes don't collide.
 
 **Getting co-authors' changes** without having edited anything: click the sync arrows in VS Code's status bar. Overleaf cannot push to you; your side has to ask. Claude always pulls before starting a task.
 

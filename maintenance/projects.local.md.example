@@ -1,4 +1,4 @@
-# Local paths and private words (copy to projects.local.md, which is gitignored)
+# Local paths (copy to projects.local.md, which is gitignored)
 
 - Research template clone (window A): ~/Repositories/Research-Project-Template
 - Overleaf template clone (window B): ~/Papers/paper-template
@@ -8,8 +8,3 @@
 
 ## Research projects
 - ~/Repositories/my-first-project   (paper inside as manuscript/)
-
-## Private words (must never appear in the templates)
-- your-surname
-- coauthor-surname
-- your-institution

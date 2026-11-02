@@ -9,7 +9,7 @@ Overleaf template clone with a gitignored `CLAUDE.local.md` at that clone's root
 In that clone, you are maintaining the template itself: this file overrides the paper rules
 in `.claude/CLAUDE.md` where they conflict (you may edit `tools/`, `.claude/`, `.vscode/`, and
 `main.tex`'s placeholders when asked). The system overview is in `../MAINTAINING.md`
-(section 1); local paths and private words are in `projects.local.md` next to this file.
+(section 1); local paths are in `projects.local.md` next to this file.
 
 ## 1. Design decisions for Level 1 (do not undo without asking)
 
@@ -33,14 +33,14 @@ in `.claude/CLAUDE.md` where they conflict (you may edit `tools/`, `.claude/`, `
   `changes` package with prefixed commands (`\chadded`…, needed for memoir); no author
   superscripts. Draft mode widens narrow pages for margin notes; final mode keeps the page size.
   Load `geometry` before reviewmarkup.
-- LaTeX Workshop recompiles on file change (interval 3 s); Claude compiles into `build/claude`.
+- LaTeX Workshop recompiles on file change (interval 3 s); Claude compiles into the same `build/`
+  (with `-synctex=1`, so PDF-to-source sync keeps working).
 - Claude's paper rules (`.claude/CLAUDE.md`): mark every edit; margin notes by default; act on
   notes only when asked ("address Alice#1"), quoting them first; "Accept changes" / "Clean up" /
   "Reject changes" commands; unasked fixes of clear typos (marked) and cited bibliography
   errors (unmarked, with a margin note); never invent references; plan first for global
   changes; never touch credentials. Personal preferences in `.claude/CLAUDE.local.md`.
-- **Public-safe**: no real names, emails or affiliations; Alice/Bob and placeholders. Check by
-  grepping for the "private words" in `projects.local.md`.
+- **Public-safe**: no real names, emails or affiliations; Alice/Bob and placeholders.
 
 ## 2. Infrastructure versus content in papers
 
@@ -53,8 +53,8 @@ in `.claude/CLAUDE.md` where they conflict (you may edit `tools/`, `.claude/`, `
 **Change the template.** Edit in this clone; saving syncs it to the Overleaf template project.
 Test first if possible (or right after): `latexmk -pdf -outdir=build main.tex` in draft and final
 mode (swap `[draft]`/`[final]`), plus a scratch test with notes, margin notes and edits spanning
-paragraphs and equations; delete `build/` afterwards. `shellcheck` the hook; JSON must parse;
-run the public-safety check. Then tell the user what to update in the guide (window A).
+paragraphs and equations; delete `build/` afterwards. `shellcheck` the hook; JSON must
+parse. Then tell the user what to update in the guide (window A).
 
 **Roll out to papers** (ask first; list them from `projects.local.md`):
 
