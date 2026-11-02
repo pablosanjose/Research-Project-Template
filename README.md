@@ -10,6 +10,11 @@ data/             simulation results (gitignored): synced with ./syncdata.sh, or
 manuscript/       the paper: a separate clone of the Overleaf project (gitignored)
 ```
 
+The template repository also holds `maintenance/` and `MAINTAINING.md`, which are for whoever maintains the
+templates, not for projects: the master copy of the guide (`maintenance/guide/`), the notes for maintaining the
+Overleaf paper template, and scripts that roll template updates out to existing papers and projects. A new project
+does not need them, and `rename-package.sh` removes them.
+
 First, once per new project (renames the Julia package everywhere, gives it a new UUID, removes the template's
 maintenance files `MAINTAINING.md` and `maintenance/`, then deletes itself):
 
