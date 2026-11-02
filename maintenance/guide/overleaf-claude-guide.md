@@ -96,7 +96,7 @@ This paragraph explains the tidal model in far too much detail.
 \noteAlice{Shorten this paragraph to three sentences.}
 ```
 
-The PDF shows it inline in your colour as **ALICE#1: Shorten this paragraph…**. For a short remark beside the text, use `\marginAlice{...}` instead. To keep the text clean, use a popup: `\popupAlice[Is this claim too strong?]{this claim}` highlights the words in your colour and shows **ALICE#1: Is this claim too strong?** when you hover over them, with no icon; the popup opens just below the line. The popup text is plain: citations, references and simple math show as [30], Eq. (5) or T_c^0, and other formatting is dropped. The highlighted words can contain citations, references, inline math and short edits, but not other notes. Hovering works in VS Code's PDF preview and on Overleaf; some other PDF viewers may show only the highlight. All three kinds share one numbering per person, counted from the top of the paper. In two-column journal layouts the draft PDF is made wider so margin notes fit, while the final version keeps the journal's page size.
+The PDF shows it inline in your colour as **ALICE#1: Shorten this paragraph…**. For a short remark beside the text, use `\marginAlice{...}` instead. To keep the text clean, use a popup: `\popupAlice[Is this claim too strong?]{this claim}` gives the words a background in your colour, and clicking them opens a box with **ALICE#1: Is this claim too strong?** just below the line (above it near the bottom of the page); click the words or the box again to close it. The box is typeset like the paper, so the note can contain equations, citations and references. The highlighted words can contain citations, references, inline math, footnotes and short edits, but not other notes. Popups work in VS Code's PDF preview; viewers that ignore PDF layers, such as macOS Preview, may show every box at once. All three kinds share one numbering per person, counted from the top of the paper. In two-column journal layouts the draft PDF is made wider so margin notes fit, while the final version keeps the journal's page size.
 
 **Getting Claude to act on a note.** Ask a Claude writer to "address Alice#1" (or several: "Alice#1 and Alice#3"). Claude quotes the note back, does the work with marked edits, and removes the note; if it has a question, the note is replaced by a Claude note. Notes nobody asks about are left alone. Removing a note renumbers your later ones, so use the numbers from the latest PDF.
 
@@ -106,8 +106,8 @@ The PDF shows it inline in your colour as **ALICE#1: Shorten this paragraph…**
 | --- | --- |
 | New text in colour, old text struck out next to it | A short edit, waiting to be accepted |
 | `[deleted: …]` in pale colour, then `[…]` in full colour | A longer edit spanning paragraphs, equations or headings |
-| A box starting with **CLAUDE#1:** | A note or question by Claude: usually short and in the margin, inline when it is long or needs equations |
-| Words highlighted in someone's colour | A popup note: hover over them to read it |
+| A box starting with **CLAUDE#1:** | A note or question by Claude: short remarks in the margin; optional explanations (the background of a claim, the reasoning behind an edit) as popups on the words concerned; inline only for what you need to read before deciding, such as a proposed rewrite |
+| Words with a background in someone's colour | A popup note: click them to open or close it |
 
 The colour tells you who made the change: Claude is dark red. You can mark your own edits the same way, with `\editAlice[old]{new}`. Edits can be nested: to change part of someone else's edit, put your edit inside its new text, e.g. `\editClaude[think]{we \editAlice[argue]{show}}`.
 
