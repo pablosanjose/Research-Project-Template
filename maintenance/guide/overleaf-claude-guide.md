@@ -105,7 +105,7 @@ The PDF shows it inline in your colour as **ALICE#1: Shorten this paragraph…**
 | You see | Meaning |
 | --- | --- |
 | New text in colour, old text struck out next to it | A short edit, waiting to be accepted |
-| `[deleted: …]` in pale colour, then `[…]` in full colour | A longer edit spanning paragraphs, equations or headings |
+| `[deleted: …]` in pale colour, then the new text in full colour | A longer edit spanning paragraphs, equations or headings |
 | A box starting with **CLAUDE#1:** | A note or question by Claude: short remarks in the margin; optional explanations (the background of a claim, the reasoning behind an edit) as popups on the words concerned; inline only for what you need to read before deciding, such as a proposed rewrite |
 | Words with a background in someone's colour | A popup note: click them to open or close it |
 
@@ -151,7 +151,7 @@ Open the paper folder in VS Code, open the Claude Code panel, and ask in plain w
 | “Address all of Alice's notes in the introduction” | Proposes a plan first, then the same for each note |
 | “Tighten the abstract” | Small marked edits in the abstract |
 | “Read the methods and leave notes, don't edit” | Claude notes, no text changes |
-| “Accept changes from Bob in section 2” | Keeps Bob's new text there, without colour or crossouts. “Clean up section 2” instead removes only the crossed-out old text, leaving the new text coloured; without a name or a section, both cover everyone's edits in the whole paper |
+| “Accept changes from Bob in section 2” | Keeps Bob's new text there, without colour or crossouts. “Clean up section 2” instead removes only the crossed-out old text, leaving the new text coloured; without a name or a section, both cover everyone's edits in the whole paper. Notes and margin notes always stay, and so do popups, unless all their words are removed |
 | “Resolve the Git conflict” | Merges both versions sensibly and explains what it chose |
 
 Without being asked, Claude also fixes clear spelling mistakes it notices (as marked edits), and fixes errors in cited bibliography entries directly in `biblio.bib`, leaving a short margin note at the first citation. Claude Code shows each change and asks before applying it, unless you allow edits for the session.

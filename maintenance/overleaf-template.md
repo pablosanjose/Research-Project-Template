@@ -30,7 +30,7 @@ in `.claude/CLAUDE.md` where they conflict (you may edit `tools/`, `.claude/`, `
   still compiles), `\popupName[text]{words}` (words with a coloured background; clicking them shows the note) and
   `\editName[old]{new}`. Notes are numbered per person (bold `ALICE#1:`), inline, margin and
   popup sharing the count. Edits may be nested (an edit inside another's new text). Edits spanning paragraphs or equations fall back to
-  `[deleted: …][…]` colour markup without affecting numbering or labels; short edits use the
+  `[deleted: …]` plus coloured new text without affecting numbering or labels; short edits use the
   `changes` package with prefixed commands (`\chadded`…, needed for memoir); no author
   superscripts. Draft mode widens narrow pages for margin notes; final mode keeps the page size.
   Load `geometry` before reviewmarkup.
