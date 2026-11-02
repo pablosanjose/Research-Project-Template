@@ -10,7 +10,8 @@ data/             simulation results (gitignored): synced with ./syncdata.sh, or
 manuscript/       the paper: a separate clone of the Overleaf project (gitignored)
 ```
 
-First, once per new project (renames the Julia package everywhere, gives it a new UUID, then deletes itself):
+First, once per new project (renames the Julia package everywhere, gives it a new UUID, removes the template's
+maintenance files `MAINTAINING.md` and `maintenance/`, then deletes itself):
 
 ```bash
 ./rename-package.sh TwistedBilayer && git add -A && git commit -m "Rename package"

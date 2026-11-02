@@ -20,10 +20,12 @@
   // Overleaf rate-limits frequent polling.
   "git.autofetch": false,
 
-  // LaTeX (manuscript): never reformat whole files; compile on save if TeX is installed.
+  // LaTeX (manuscript): never reformat whole files. If TeX is installed, recompile
+  // whenever the paper's files change on disk (saves, Claude, Overleaf), at most every 3 s.
   "[latex]": { "editor.formatOnSave": false, "editor.wordWrap": "on" },
   "latex-workshop.formatting.latex": "none",
-  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoBuild.interval": 3000,
   "latex-workshop.latex.outDir": "%DIR%/build",
   "latex-workshop.view.pdf.viewer": "tab",
 
