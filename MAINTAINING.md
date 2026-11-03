@@ -72,19 +72,20 @@ Commit and push (ask first).
 `maintenance/rollout-research.sh PATH`, review `git -C PATH diff` (project-specific additions
 to `CLAUDE.md` would be overwritten), then commit and push in that project.
 
-**The guide.** The master copy is `maintenance/guide/overleaf-claude-guide.md`; keep it in step
-with both templates (window B tells the user when a Level 1 change needs a guide update here).
-There is no PDF version; the Markdown file is the guide.
+**The guide.** Two Markdown files in `maintenance/guide/`, kept in step with both templates
+(window B tells the user when a Level 1 change needs a guide update here):
+`overleaf-claude-guide.md`, the full guide (all levels, owner setup), and `joining-a-paper.md`,
+the co-author quick-start (Level 1 only; it points to the full guide). There is no PDF version.
 
-**Releases** (only this repository has them; ask first). A release holds three files: both
-template zips and the guide Markdown. Build the zips from the clones:
+**Releases** (only this repository has them; ask first). A release holds four files: both
+template zips and the two guide files. Build the zips from the clones:
 
 ```bash
 OT=$(…path of the Overleaf template clone, from projects.local.md…)
 (cd "$(dirname "$OT")" && zip -qr /tmp/overleaf-paper-template.zip "$(basename "$OT")" -x '*/.git/*' '*/build/*' '*/CLAUDE.local.md' '*/.claude/CLAUDE.local.md')
 git archive --format=zip --prefix=research-project-template/ -o /tmp/research-project-template.zip HEAD
 gh release create vX.Y /tmp/overleaf-paper-template.zip /tmp/research-project-template.zip \
-   maintenance/guide/overleaf-claude-guide.md \
+   maintenance/guide/overleaf-claude-guide.md maintenance/guide/joining-a-paper.md \
    --repo pablosanjose/Research-Project-Template --title "…" --notes "…what changed…"
 ```
 

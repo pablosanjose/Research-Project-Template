@@ -104,8 +104,7 @@ The PDF shows it inline in your colour as **ALICE#1: Shorten this paragraph…**
 
 | You see | Meaning |
 | --- | --- |
-| New text in colour, old text struck out next to it | A short edit, waiting to be accepted |
-| `[deleted: …]` in pale colour, then the new text in full colour | A longer edit spanning paragraphs, equations or headings |
+| `[deleted: …]` in pale colour, then the new text in full colour | An edit, waiting to be accepted |
 | A box starting with **CLAUDE#1:** | A note or question by Claude: short remarks in the margin; optional explanations (the background of a claim, the reasoning behind an edit) as popups on the words concerned; inline only for what you need to read before deciding, such as a proposed rewrite |
 | Words with a background in someone's colour | A popup note: click them to open or close it |
 
@@ -127,9 +126,9 @@ The colour tells you who made the change: Claude is dark red. You can mark your 
 | Git | Type `git --version` in Terminal and accept the install offer | Git for Windows (git-scm.com), default options | Usually preinstalled; otherwise your package manager |
 | Claude Code | VS Code extension “Claude Code”, then sign in | same | same |
 | GitDoc | VS Code extension “GitDoc” (skip it if you use Git yourself) | same | same |
-| TeX (optional) | MacTeX | MiKTeX or TeX Live | TeX Live from your package manager |
+| TeX (optional) | Tectonic: `brew install tectonic` | Tectonic (see `joining-a-paper.md`) | Tectonic: `brew install tectonic` |
 
-TeX and the LaTeX Workshop extension give you a local PDF that recompiles whenever the paper changes: your saves, Claude's edits, and co-authors' changes arriving from Overleaf. Without TeX, don't install LaTeX Workshop (or disable it for the paper folder), and read the PDF on Overleaf.
+TeX and the LaTeX Workshop extension give you a local PDF that recompiles whenever the paper changes: your saves, Claude's edits, and co-authors' changes arriving from Overleaf. Claude also uses it to check that its edits compile. Minimal installations such as BasicTeX lack packages the review commands need, so use Tectonic, which downloads them the first time it compiles. A full TeX Live or MacTeX works too, without any settings. The companion `joining-a-paper.md` has the install commands and the VS Code settings for Tectonic. Without TeX, don't install LaTeX Workshop (or disable it for the paper folder), and read the PDF on Overleaf.
 
 **Join a paper (once per paper).**
 
@@ -151,10 +150,10 @@ Open the paper folder in VS Code, open the Claude Code panel, and ask in plain w
 | “Address all of Alice's notes in the introduction” | Proposes a plan first, then the same for each note |
 | “Tighten the abstract” | Small marked edits in the abstract |
 | “Read the methods and leave notes, don't edit” | Claude notes, no text changes |
-| “Accept changes from Bob in section 2” | Keeps Bob's new text there, without colour or crossouts. “Clean up section 2” instead removes only the crossed-out old text, leaving the new text coloured; without a name or a section, both cover everyone's edits in the whole paper. Notes and margin notes always stay, and so do popups, unless all their words are removed |
+| “Accept changes from Bob in section 2” | Keeps Bob's new text there, without colour or deleted text. “Clean up section 2” instead removes only the deleted old text, leaving the new text coloured; without a name or a section, both cover everyone's edits in the whole paper. Notes and margin notes always stay, and so do popups, unless all their words are removed |
 | “Resolve the Git conflict” | Merges both versions sensibly and explains what it chose |
 
-Without being asked, Claude also fixes clear spelling mistakes it notices (as marked edits), and fixes errors in cited bibliography entries directly in `biblio.bib`, leaving a short margin note at the first citation. Claude Code shows each change and asks before applying it, unless you allow edits for the session.
+Without being asked, Claude also fixes clear spelling mistakes it notices (as marked edits), and fixes errors in cited bibliography entries directly in `biblio.bib`, leaving a short margin note at the first citation (a popup on the citation if the explanation is longer). Claude Code shows each change and asks before applying it, unless you allow edits for the session.
 
 **Syncing happens on every save.** Press Ctrl/Cmd+S, or switch to another window (that saves too). A few seconds later GitDoc commits, pulls Overleaf's latest text, merges it, and pushes; browser writers see your change within seconds. With TeX installed, your local PDF recompiles a few seconds after any change, including Claude's edits. Save before asking Claude to edit, so your unsaved typing and Claude's changes don't collide.
 
@@ -255,6 +254,7 @@ When in doubt, ask Claude what happened: it can read the Git state and fix most 
 | A margin note sits in the gap between columns | It falls exactly at a column break | Move it a sentence earlier or later, or make it inline |
 | Margin notes cut off at the page edge | A page-layout package such as `geometry` is loaded after `reviewmarkup` | Load it before `tools/reviewmarkup` |
 | LaTeX Workshop reports an error at every save | TeX is not installed | Install TeX, or disable LaTeX Workshop for the folder |
+| The local PDF reports missing packages | A minimal TeX installation such as BasicTeX | Install Tectonic, or a full TeX Live or MacTeX |
 | Git errors about rate limits | Too many automatic syncs | Keep syncing tied to saves; don't enable timed autosave or VS Code's auto-fetch |
 
 ## Level 2: Code

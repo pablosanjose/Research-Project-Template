@@ -29,12 +29,16 @@ in `.claude/CLAUDE.md` where they conflict (you may edit `tools/`, `.claude/`, `
   Each line creates `\noteName{}` (inline), `\marginName{}` (margin; old `\noteName[margin]{}`
   still compiles), `\popupName[text]{words}` (words with a coloured background; clicking them shows the note) and
   `\editName[old]{new}`. Notes are numbered per person (bold `ALICE#1:`), inline, margin and
-  popup sharing the count. Edits may be nested (an edit inside another's new text). Edits spanning paragraphs or equations fall back to
-  `[deleted: …]` plus coloured new text without affecting numbering or labels; short edits use the
-  `changes` package with prefixed commands (`\chadded`…, needed for memoir); no author
-  superscripts. Draft mode widens narrow pages for margin notes; final mode keeps the page size.
+  popup sharing the count. Edits may be nested (an edit inside another's new text). Every edit shows its old text
+  as `[deleted: …]` in a pale shade, then the new text in colour (no strike-out: it cannot
+  hold paragraphs, equations, notes or popups); old text does not affect numbering or labels.
+  The `changes` package is still loaded, with prefixed commands (`\chadded`…, needed for
+  memoir), for co-authors who type its commands directly; no author superscripts. Draft mode widens narrow pages for margin notes; final mode keeps the page size.
   Load `geometry` before reviewmarkup.
-- Popups (draft only; pdfLaTeX or LuaLaTeX, otherwise an inline note). The words get a
+- Popups (draft only; pdfLaTeX or LuaLaTeX through pdfTeX primitives, XeLaTeX or Tectonic through
+  xdvipdfmx specials (pdf:obj, pdf:bxobj/exobj, pdf:bann/eann, pdf:ann, pdf:put @catalog,
+  the last in shipout/lastpage, since a special in \AtEndDocument is lost with REVTeX);
+  otherwise an inline note; Tectonic's bundle has LaTeX 2021-11, so keep to that). The words get a
   background from `ulem` (overlapping 2pt tiles: abutting ones show seams in PDF.js; edits
   inside the words are wrapped in `\mbox`, ulem cannot take `changes` inside). The note is
   typeset once (`varwidth`, at most 0.4 page wide, hyperref links off) into a form XObject
