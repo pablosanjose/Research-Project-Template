@@ -1,10 +1,9 @@
 # Local paths (copy to projects.local.md, which is gitignored)
 
 - Research template clone (window A): ~/Repositories/Research-Project-Template
-- Overleaf template clone (window B): ~/Papers/paper-template
+- Overleaf template clone (window B): ~/Repositories/Overleaf-Template
 
 ## Papers (Overleaf clones)
-- ~/Papers/my-first-paper
+- ~/Repositories/BallisticLP
 
 ## Research projects
-- ~/Repositories/my-first-project   (paper inside as manuscript/)

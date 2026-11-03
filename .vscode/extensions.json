@@ -1,8 +1,6 @@
 {
   "recommendations": [
     "julialang.language-julia",
-    "anthropic.claude-code",
-    "vsls-contrib.gitdoc",
-    "James-Yu.latex-workshop"
+    "anthropic.claude-code"
   ]
 }

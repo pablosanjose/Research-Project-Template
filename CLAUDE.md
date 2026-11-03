@@ -1,11 +1,9 @@
 # Working on this research project
 
-This repository (on GitHub) holds the research behind a paper: the Julia package with the
-models, the simulation jobs, and the analysis that turns data into figures. Two things live
-inside it but are **not part of it** (both are gitignored):
-
-- `manuscript/`: a separate Git clone of the paper's Overleaf project, with its own rules.
-- `data/`: simulation results, synced from the cluster with `syncdata.sh` (a link to storage on the cluster).
+This repository (on GitHub) holds the simulations behind a paper: the Julia package with the
+models, the simulation jobs, and the analysis that turns data into figures. The manuscript is
+not part of it. `data/` lives inside it but is gitignored: simulation results, synced from the
+cluster with `sync-data.sh` (on the cluster, a link to the project's storage).
 
 ```text
 simulations/            Julia package MyPaperPackage (environment: --project=simulations)
@@ -16,33 +14,26 @@ simulations/            Julia package MyPaperPackage (environment: --project=sim
 analysis/               plotting environment (--project=analysis)
   plots.example.jl      figure builders: data as positional arguments, looks as keywords
   output/               generated figures
-syncdata.sh, .conf      data transfer with the cluster
+sync-data.sh, .conf     data transfer with the cluster
 ```
 
 Rules marked **(always)** cannot be overridden, not even by personal instructions.
 
 ## 1. Read first
 
-1. Personal preferences: read `CLAUDE.local.md` or `.claude/CLAUDE.local.md` here if either exists.
-2. If `manuscript/` exists, its rules apply to everything inside it:
-
-@manuscript/.claude/CLAUDE.md
-
-   Inside `manuscript/`, the paths in those rules are relative to `manuscript/`, its personal
-   file is `manuscript/.claude/CLAUDE.local.md`, and its Git commands run as `git -C manuscript …`.
-   The manuscript syncs with Overleaf through GitDoc on every save; never commit or push it unless asked.
+Personal preferences: read `CLAUDE.local.md` or `.claude/CLAUDE.local.md` here if either exists.
 
 ## 2. Git for this repository (always)
 
 - Start every task with `git status`. Commit or push only when the user asks, with a clear message.
 - Never force-push, rebase, amend, `reset --hard` or `git clean`. Create branches only when asked.
-- Never commit anything under `data/` or `manuscript/`, generated output, or large files (over ~10 MB).
+- Never commit anything under `data/`, generated output, or large files (over ~10 MB).
 - Commit `Project.toml` and `Manifest.toml` together whenever dependencies change.
 
 ## 3. Data (always)
 
 - Never modify, move or delete anything in `data/`: it is written only by simulation jobs.
-- `./syncdata.sh` pulls data from the cluster; run it when asked. Never run `./syncdata.sh --push`.
+- `./sync-data.sh` pulls data from the cluster; run it when asked. Never run `./sync-data.sh --push`.
 
 ## 4. Julia
 
@@ -59,8 +50,8 @@ Rules marked **(always)** cannot be overridden, not even by personal instruction
 
 - Figure builders in `analysis/` take data as positional arguments and visual options as keywords,
   and save to `analysis/output/`.
-- Copy a figure into `manuscript/figures/` only when asked; that is a change to the manuscript, so
-  mention it, and say whether the figure's data came from committed code.
+- The manuscript is not in this repository: never write outside it. Final figures are copied into
+  the paper by hand; when asked which figures are ready, say whether their data came from committed code.
 
 ## 6. How to work
 

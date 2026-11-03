@@ -1,37 +1,8 @@
 {
-  // Shared by everyone who opens this research repository in VS Code.
-  // (manuscript/.vscode/ is ignored when the manuscript is opened inside this folder.)
-
-  // Saving (Ctrl/Cmd+S, or switching to another window) is what syncs the manuscript.
-  "files.autoSave": "onFocusChange",
-
-  // GitDoc: auto-sync ONLY the manuscript (Overleaf). This research repository is
-  // committed deliberately, by you or by asking Claude.
-  "gitdoc.enabled": true,
-  "gitdoc.filePattern": "**/manuscript/**",
-  "gitdoc.autoCommitDelay": 3000,
-  "gitdoc.autoPush": "onCommit",
-  "gitdoc.autoPull": "onPush",
-  "gitdoc.pullOnOpen": true,
-  "gitdoc.pushMode": "push",
-  "gitdoc.commitValidationLevel": "none",
-  "gitdoc.commitOnClose": true,
-
-  // Overleaf rate-limits frequent polling.
-  "git.autofetch": false,
-
-  // LaTeX (manuscript): never reformat whole files. If TeX is installed, recompile
-  // whenever the paper's files change on disk (saves, Claude, Overleaf), at most every 3 s.
-  "[latex]": { "editor.formatOnSave": false, "editor.wordWrap": "on" },
-  "latex-workshop.formatting.latex": "none",
-  "latex-workshop.latex.autoBuild.run": "onFileChange",
-  "latex-workshop.latex.autoBuild.interval": 3000,
-  "latex-workshop.latex.outDir": "%DIR%/build",
-  "latex-workshop.view.pdf.viewer": "tab",
+  // Shared by everyone who opens this repository in VS Code.
 
   // Julia: the REPL starts in the analysis environment (switch in the status bar).
   "julia.environmentPath": "analysis",
 
-  "files.exclude": { "manuscript/build": true },
   "chat.useAgentsMdFile": true
 }

@@ -1,5 +1,4 @@
-# Separate repositories / storage, never part of this repository
-manuscript/
+# Simulation results: synced with ./sync-data.sh, or a link to storage on the cluster
 data/
 
 # Generated output (folders kept with .gitkeep)
@@ -9,9 +8,8 @@ analysis/output/*
 !analysis/output/.gitkeep
 
 # Personal, never shared
-syncdata.local.conf
+sync-data.local.conf
 CLAUDE.local.md
 .claude/CLAUDE.local.md
 .claude/settings.local.json
 .DS_Store
-maintenance/projects.local.md

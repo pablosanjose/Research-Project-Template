@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Run once, right after creating a project from the template:
 #   ./rename-package.sh MyNewPackage
-# Renames the Julia package MyPaperPackage everywhere, gives it a fresh UUID, removes the
-# template's maintenance files, and then deletes itself. Commit the result.
+# Renames the Julia package MyPaperPackage everywhere, gives it a fresh UUID, and then
+# deletes itself. Commit the result.
 # Never run it in the template repository itself.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -19,7 +19,7 @@ elif command -v uuidgen >/dev/null; then NEWUUID=$(uuidgen | tr '[:upper:]' '[:l
 else NEWUUID=$(cat /proc/sys/kernel/random/uuid); fi
 
 files=()
-while IFS= read -r f; do files+=("$f"); done < <(grep -rlI -e "$OLD" -e "$OLDUUID" --exclude-dir=.git --exclude-dir=manuscript --exclude-dir=data --exclude-dir=maintenance --exclude=MAINTAINING.md --exclude=rename-package.sh .)
+while IFS= read -r f; do files+=("$f"); done < <(grep -rlI -e "$OLD" -e "$OLDUUID" --exclude-dir=.git --exclude-dir=data --exclude=rename-package.sh .)
 perl -pi -e "s/\\b$OLD\\b/$NEW/g; s/$OLDUUID/$NEWUUID/g" "${files[@]}"
 
 if git rev-parse --git-dir >/dev/null 2>&1; then git mv "simulations/src/$OLD.jl" "simulations/src/$NEW.jl"
@@ -27,9 +27,5 @@ else mv "simulations/src/$OLD.jl" "simulations/src/$NEW.jl"; fi
 
 echo "Renamed $OLD to $NEW (new UUID $NEWUUID) in:"; printf '  %s\n' "${files[@]}"
 
-# Template-maintenance material is not part of a project.
-if git rev-parse --git-dir >/dev/null 2>&1; then git rm -r -q --ignore-unmatch MAINTAINING.md maintenance
-else rm -rf MAINTAINING.md maintenance; fi
-echo "Removed the template's maintenance files (MAINTAINING.md, maintenance/)."
 rm -- "$0"
 echo "rename-package.sh removed itself. Now commit: git add -A && git commit -m \"Rename package to $NEW\""

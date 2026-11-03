@@ -4,7 +4,7 @@
 # Copy it to a new name (e.g. plots.jl) and adapt the figures.
 # Run it whole:      julia --project=analysis analysis/plots.jl
 # or interactively in VS Code, one ## cell at a time (select the analysis environment first).
-# Figures go to analysis/output/; copy the final ones to manuscript/figures/ by hand.
+# Figures go to analysis/output/; copy the final ones into the paper by hand.
 #
 # Each figure has a builder function: data as positional arguments, visual options as
 # keyword arguments. Tweak the look with keywords, without touching the data or the code.

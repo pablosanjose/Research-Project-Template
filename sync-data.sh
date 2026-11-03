@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 # Sync the project's data between the cluster and this computer, over SSH with rsync.
 #
-#   ./syncdata.sh          pull: copy new and changed files from the cluster to data/
-#   ./syncdata.sh -n       dry run: show what would be copied, copy nothing
-#   ./syncdata.sh --push   push: copy local files to the cluster (asks for confirmation)
+#   ./sync-data.sh          pull: copy new and changed files from the cluster to data/
+#   ./sync-data.sh -n       dry run: show what would be copied, copy nothing
+#   ./sync-data.sh --push   push: copy local files to the cluster (asks for confirmation)
 #
-# Settings are in syncdata.conf (shared) and syncdata.local.conf (personal, optional).
+# Settings are in sync-data.conf (shared) and sync-data.local.conf (personal, optional).
 # Nothing is ever deleted on either side. Requires passwordless SSH to the cluster
 # (and the VPN, if the cluster needs it).
 set -euo pipefail
 cd "$(dirname "$0")"
 
-source ./syncdata.conf
-if [[ -f ./syncdata.local.conf ]]; then source ./syncdata.local.conf; fi
+source ./sync-data.conf
+if [[ -f ./sync-data.local.conf ]]; then source ./sync-data.local.conf; fi
 
 direction=pull
 dryrun=()
@@ -21,7 +21,7 @@ for arg in "$@"; do
         -n|--dry-run) dryrun=(--dry-run) ;;
         --push)       direction=push ;;
         -h|--help)    sed -n '2,11p' "$0"; exit 0 ;;
-        *)            echo "Unknown option: $arg (see ./syncdata.sh --help)" >&2; exit 2 ;;
+        *)            echo "Unknown option: $arg (see ./sync-data.sh --help)" >&2; exit 2 ;;
     esac
 done
 
