@@ -2,8 +2,8 @@
 
 This repository (on GitHub) holds the simulations behind a paper: the Julia package with the
 models, the simulation jobs, and the analysis that turns data into figures. The manuscript is
-not part of it. `data/` lives inside it but is gitignored: simulation results, synced from the
-cluster with `sync-data.sh` (on the cluster, a link to the project's storage).
+not part of it. `data/` lives inside it with its contents gitignored: simulation results, written by jobs
+into the clone on the cluster and synced from there with `sync-data.sh`.
 
 ```text
 simulations/            Julia package MyPaperPackage (environment: --project=simulations)

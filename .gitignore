@@ -1,5 +1,6 @@
-# Simulation results: synced with ./sync-data.sh, or a link to storage on the cluster
-data/
+# Simulation results, written by jobs and synced with ./sync-data.sh (folder kept with .gitkeep)
+data/*
+!data/.gitkeep
 
 # Generated output (folders kept with .gitkeep)
 simulations/out/*

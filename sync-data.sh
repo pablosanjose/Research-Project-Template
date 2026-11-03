@@ -27,11 +27,6 @@ done
 
 command -v rsync >/dev/null || { echo "rsync is not installed (on Windows, run this in WSL)." >&2; exit 1; }
 
-if [[ -L "$LOCAL_PATH" ]]; then
-    echo "$LOCAL_PATH is a link to storage on this machine (the cluster?): nothing to sync here."
-    exit 0
-fi
-
 if ! ssh -o BatchMode=yes -o ConnectTimeout=5 "$REMOTE" true 2>/dev/null; then
     echo "Cannot reach '$REMOTE' over SSH. Is the VPN on? Is '$REMOTE' defined in ~/.ssh/config?" >&2
     exit 1

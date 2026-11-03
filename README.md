@@ -7,7 +7,7 @@ elsewhere (for example on Overleaf, in its own VS Code window); copy final figur
 ```text
 simulations/        Julia package MyPaperPackage: src/ (models), test/, run/ (Slurm jobs), out/ (logs)
 analysis/           plotting environment: plots.example.jl, output/ (generated figures)
-data/               simulation results (gitignored): pulled with ./sync-data.sh, or a link on the cluster
+data/               simulation results (contents gitignored): written by jobs, pulled with ./sync-data.sh
 sync-data.sh, .conf data transfer between the cluster and laptops
 CLAUDE.md           rules for Claude Code (and other assistants, through .github/)
 ```
@@ -36,11 +36,11 @@ Needs Julia 1.10 or later, Git, and passwordless SSH to the cluster.
    1.10, link it once before instantiating, and commit `analysis/Manifest.toml`:
    `cd analysis && julia --project=. -e 'using Pkg; Pkg.develop(path="../simulations")'`.
 
-4. Point `sync-data.conf` at the project's storage on the cluster, and commit it:
+4. Point `sync-data.conf` at the repository's clone on the cluster, and commit it:
 
    ```bash
    REMOTE=mycluster                              # an SSH alias everyone defines in ~/.ssh/config
-   REMOTE_PATH=/storage/mygroup/myproject/data   # the project's data folder on the cluster
+   REMOTE_PATH=myproject/data                    # data/ of the clone on the cluster (relative to home)
    ```
 
    The alias is the only thing the repository knows about the cluster; user names stay in each person's
@@ -67,7 +67,8 @@ julia --project=analysis -e 'using Pkg; Pkg.instantiate()'
 | `./sync-data.sh -n` | Dry run: shows what would be copied |
 | `./sync-data.sh --push` | Copies local files to the cluster, after asking (rarely needed) |
 
-Personal settings (for example a different local folder) go in `sync-data.local.conf`, which is gitignored.
+Personal settings (for example a different local folder, or a clone elsewhere on the cluster) go in
+`sync-data.local.conf`, which is gitignored.
 On Windows, run the script in WSL. Recent macOS versions ship a reduced `rsync`; if the script complains,
 `brew install rsync`.
 
@@ -80,11 +81,11 @@ On Windows, run the script in WSL. Recent macOS versions ship a reduced `rsync`;
 
 ## On the cluster
 
-Once per person, clone the repository and link `data/` to the project's storage:
+Once per person, clone the repository into your home folder, at the path set in `REMOTE_PATH`. Jobs write
+their results to the clone's own `data/` folder, which the clone already contains:
 
 ```bash
-git clone git@github.com:GROUP/PROJECT.git && cd PROJECT
-ln -s /storage/mygroup/myproject/data data       # the same path as REMOTE_PATH
+git clone git@github.com:GROUP/PROJECT.git myproject && cd myproject
 ```
 
 To run a computation, copy `simulations/run/job.example.jl` under a new name (say `bands.jl`) and adapt it.
