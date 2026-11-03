@@ -4,5 +4,5 @@
   // Julia: the REPL starts in the analysis environment (switch in the status bar).
   "julia.environmentPath": "analysis",
 
-  "chat.useAgentsMdFile": true
+"chat.useAgentsMdFile": true,
 }
