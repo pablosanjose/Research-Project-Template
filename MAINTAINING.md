@@ -82,7 +82,7 @@ template zips and the two guide files. Build the zips from the clones:
 
 ```bash
 OT=$(…path of the Overleaf template clone, from projects.local.md…)
-(cd "$(dirname "$OT")" && zip -qr /tmp/overleaf-paper-template.zip "$(basename "$OT")" -x '*/.git/*' '*/build/*' '*/CLAUDE.local.md' '*/.claude/CLAUDE.local.md')
+git -C "$OT" archive --format=zip --prefix=overleaf-paper-template/ -o /tmp/overleaf-paper-template.zip HEAD   # the guide expects this folder name
 git archive --format=zip --prefix=research-project-template/ -o /tmp/research-project-template.zip HEAD
 gh release create vX.Y /tmp/overleaf-paper-template.zip /tmp/research-project-template.zip \
    maintenance/guide/overleaf-claude-guide.md maintenance/guide/joining-a-paper.md \
