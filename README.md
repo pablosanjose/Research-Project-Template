@@ -1,8 +1,14 @@
 # Research project template
 
-A GitHub template for the simulations behind a paper: a Julia package with the models, Slurm jobs that
-run on the group's cluster, and the scripts that turn their data into figures. The manuscript lives
-elsewhere (for example on Overleaf, in its own VS Code window); copy final figures into it by hand.
+<!-- template-only -->
+A GitHub template for research projects. Create a project from it as described in
+[Start a project](#start-a-project-project-owner-once): `rename-package.sh` then turns this README into the
+project's own, titled after the package and without the template notes.
+<!-- /template-only -->
+
+The simulations behind a paper: a Julia package with the models, Slurm jobs that run on the group's
+cluster, and the scripts that turn their data into figures. The manuscript lives elsewhere (for example
+on Overleaf, in its own VS Code window); copy final figures into it by hand.
 
 ```text
 simulations/        Julia package MyPaperPackage: src/ (models), test/, run/ (Slurm jobs), out/ (logs)
@@ -14,17 +20,24 @@ sync-data.sh, .conf data transfer between the cluster and laptops
 
 Needs Julia 1.10 or later, Git, and passwordless SSH to the cluster.
 
+<!-- template-only -->
 ## Start a project (project owner, once)
 
 1. On GitHub, **Use this template → Create a new repository** (private), and clone it.
 2. Rename the package and commit. The script replaces `MyPaperPackage` everywhere, gives the package a
-   fresh UUID (each package needs its own, or Julia mixes them up between projects), and deletes itself:
+   fresh UUID (each package needs its own, or Julia mixes them up between projects), titles this README
+   after the package, removes its template notes (this section included), and deletes itself:
 
    ```bash
    ./rename-package.sh TwistedBilayer && git add -A && git commit -m "Rename package"
    ```
 
-3. Install both environments and commit the resulting `Manifest.toml` files, which record the exact
+3. Continue with [Set up](#set-up-project-owner-once).
+<!-- /template-only -->
+
+## Set up (project owner, once)
+
+1. Install both environments and commit the resulting `Manifest.toml` files, which record the exact
    package versions:
 
    ```bash
@@ -36,7 +49,7 @@ Needs Julia 1.10 or later, Git, and passwordless SSH to the cluster.
    1.10, link it once before instantiating, and commit `analysis/Manifest.toml`:
    `cd analysis && julia --project=. -e 'using Pkg; Pkg.develop(path="../simulations")'`.
 
-4. Point `sync-data.conf` at the repository's clone on the cluster, and commit it:
+2. Point `sync-data.conf` at the repository's clone on the cluster, and commit it:
 
    ```bash
    REMOTE=mycluster                              # an SSH alias everyone defines in ~/.ssh/config
@@ -116,5 +129,5 @@ many files. Personal preferences go in a gitignored `CLAUDE.local.md`.
 | Job stops with “Run from the repository root” | `cd` to the repository root, then `sbatch simulations/run/yourjob.jl` |
 | Job runs but no log appears | `simulations/out/` is missing, so Slurm drops the log: `git checkout simulations/out` |
 | `sync-data.sh` can't reach the cluster | Connect the VPN; check that `ssh mycluster` logs in without a password |
-| “Package MyPaperPackage not found” | Run the instantiate commands; on Julia 1.10, link the package as in step 3 |
+| “Package MyPaperPackage not found” | Run the instantiate commands; on Julia 1.10, link the package as in Set up, step 1 |
 | A figure warns its data came from uncommitted code | Commit the code and rerun the job before the figure goes into the paper |

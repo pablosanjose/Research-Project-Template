@@ -22,6 +22,9 @@ files=()
 while IFS= read -r f; do files+=("$f"); done < <(grep -rlI -e "$OLD" -e "$OLDUUID" --exclude-dir=.git --exclude-dir=data --exclude=rename-package.sh .)
 perl -pi -e "s/\\b$OLD\\b/$NEW/g; s/$OLDUUID/$NEWUUID/g" "${files[@]}"
 
+# Turn the template README into the project's: title it after the package, drop the template-only blocks.
+perl -0pi -e "s/\\A# .*\\n/# $NEW\\n/; s/^<!-- template-only -->\\n.*?^<!-- \\/template-only -->\\n\\n?//gms" README.md
+
 if git rev-parse --git-dir >/dev/null 2>&1; then git mv "simulations/src/$OLD.jl" "simulations/src/$NEW.jl"
 else mv "simulations/src/$OLD.jl" "simulations/src/$NEW.jl"; fi
 
