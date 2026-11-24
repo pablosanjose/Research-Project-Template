@@ -9,7 +9,7 @@ simulations/        Julia package MyPaperPackage: src/ (models), test/, run/ (Sl
 analysis/           plotting environment: plots.example.jl, output/ (generated figures)
 data/               simulation results (contents gitignored): written by jobs, pulled with ./sync-data.sh
 sync-data.sh, .conf data transfer between the cluster and laptops
-CLAUDE.md           rules for Claude Code (and other assistants, through .github/)
+.claude/CLAUDE.md   rules for Claude Code (and other assistants, through .github/)
 ```
 
 Needs Julia 1.10 or later, Git, and passwordless SSH to the cluster.
@@ -105,7 +105,7 @@ At publication, archive the final data (for example on Zenodo) and cite its DOI 
 
 ## Working with Claude
 
-Claude Code follows `CLAUDE.md`. It never touches `data/` or pushes data to the cluster, never submits jobs
+Claude Code follows `.claude/CLAUDE.md`. It never touches `data/` or pushes data to the cluster, never submits jobs
 or starts long computations unless asked, commits only when asked, and proposes a plan before changes across
 many files. Personal preferences go in a gitignored `CLAUDE.local.md`.
 
